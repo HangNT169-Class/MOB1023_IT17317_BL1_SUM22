@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package B1_ReviewOOP;
+package B2_ReviewOOP_Tiep;
 
 /**
  *
@@ -16,8 +16,8 @@ public class SinhVien extends Nguoi {
     public SinhVien() {
     }
 
-    public SinhVien(String mssv, double diem, String ten, int tuoi) {
-        super(ten, tuoi);
+    public SinhVien(String mssv, double diem, String ten, int tuoi, String diaChi) {
+        super(ten, tuoi, diaChi);
         this.mssv = mssv;
         this.diem = diem;
     }
@@ -38,8 +38,10 @@ public class SinhVien extends Nguoi {
         this.diem = diem;
     }
 
+    @Override
     public void display() {
-        System.out.println(this.diem + " - " + this.mssv + " - " + super.getTen() + " - " + super.getTuoi());
+        super.display();
+        System.out.println(mssv);
+        System.out.println(diem);
     }
-    
 }
