@@ -5,6 +5,7 @@
 package B3_OverviewSwing;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -98,13 +99,17 @@ public class HelloWorldFrame extends javax.swing.JFrame {
             new Object [][] {
                 {"Hằng", "SE", "Nữ", "Ăn và lăn"},
                 {"A", "IS", "Nam", "Ăn"},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"b", "IS", "Nam", null}
             },
             new String [] {
                 "Tên", "Loại", "Giới tính", "Sở thích"
             }
         ));
+        tbHienThi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbHienThiMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbHienThi);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -131,9 +136,7 @@ public class HelloWorldFrame extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel2)
                                             .addComponent(jLabel4)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(radioNu)
-                                        .addGap(120, 120, 120))))
+                                    .addComponent(radioNu)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnClose)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -146,9 +149,7 @@ public class HelloWorldFrame extends javax.swing.JFrame {
                                     .addComponent(cbAn)
                                     .addComponent(cbbLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cbLan)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAdd)))))
+                            .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
@@ -197,6 +198,11 @@ public class HelloWorldFrame extends javax.swing.JFrame {
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
         // code cua button clear
+        txtName.setText("");
+        cbbLoai.setSelectedIndex(0);
+        buttonGroup1.clearSelection();
+        cbAn.setSelected(false);
+        cbLan.setSelected(false);
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -222,8 +228,17 @@ public class HelloWorldFrame extends javax.swing.JFrame {
         String result = name + " - " + loai + " - " + gender + " - " + soThich;
         // hien thi thong bao
         JOptionPane.showMessageDialog(rootPane, result);
-        // https://github.com/AnhDT11/Course-JavaDesktop/blob/master/2.%20JOptionPane.md
+        // thtps://github.com/AnhDT11/Course-JavaDesktop/blob/master/2.%20JOptionPane.md
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void tbHienThiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbHienThiMouseClicked
+        // click 
+        // cach lay data cua 1 row
+        int row = tbHienThi.getSelectedRow();
+        TableModel tableModel = tbHienThi.getModel();
+        String ten = tableModel.getValueAt(row, 1).toString();
+        JOptionPane.showMessageDialog(rootPane, ten);
+    }//GEN-LAST:event_tbHienThiMouseClicked
 
     /**
      * @param args the command line arguments
