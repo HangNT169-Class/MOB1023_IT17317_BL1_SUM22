@@ -236,7 +236,7 @@ public class HelloWorldFrame extends javax.swing.JFrame {
         // cach lay data cua 1 row
         int row = tbHienThi.getSelectedRow();
         TableModel tableModel = tbHienThi.getModel();
-        String ten = tableModel.getValueAt(row, 1).toString();
+        String ten = tableModel.getValueAt(row, 0).toString();
         JOptionPane.showMessageDialog(rootPane, ten);
     }//GEN-LAST:event_tbHienThiMouseClicked
 
