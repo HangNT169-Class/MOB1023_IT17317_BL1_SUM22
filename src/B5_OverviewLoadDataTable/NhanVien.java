@@ -58,6 +58,6 @@ public class NhanVien {
     }
 
     public Object[] toDataRow() {
-        return new Object[]{ten, loai, gender, soThich};
+        return new Object[]{ten, loai, gender == true ? "Nam" : "Nữ", soThich};
     }
 }
