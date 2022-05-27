@@ -2,6 +2,7 @@ package B6_BaiMauCURD_TachService;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -27,7 +28,7 @@ public class ViewSinhVien extends javax.swing.JFrame {
         listSinhVien = new ArrayList<>();
         tbHienThi.setModel(dtm = new DefaultTableModel());
         sinhVienService = new SinhVienService();
-        
+
         // custom header
         String[] headers = {"MSSV", "Ten", "Tuoi", "GioiTinh", "DiaChi"};
         dtm.setColumnIdentifiers(headers);
@@ -322,7 +323,27 @@ public class ViewSinhVien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-
+        String maSV = txtMSV.getText();
+        String ten = txtName.getText();
+        String tuoi = txtAge.getText();
+        String diaChi = txtDiaChi.getText();
+        boolean isGender = radioNam.isSelected();
+        int gioiTinh = 0;
+        if (isGender == true) {
+            gioiTinh = 1;
+        } else {
+            gioiTinh = 2;
+        }
+        if (maSV.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "HIHI");
+        } else {
+            // Khoi tao 1 doi tuong va gan gia tri 
+            SinhVien sinhVien = new SinhVien(maSV, ten, Integer.valueOf(tuoi), diaChi, gioiTinh);
+            // add vao list
+            listSinhVien.add(sinhVien);
+            // hien thi len table
+            showDataTable(listSinhVien);
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void tbHienThiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbHienThiMouseClicked
@@ -331,7 +352,7 @@ public class ViewSinhVien extends javax.swing.JFrame {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String searchName = txtSearch.getText();
-        List<SinhVien> listSearch = sinhVienService.searchByName(listSinhVien,searchName );
+        List<SinhVien> listSearch = sinhVienService.searchByName(listSinhVien, searchName);
         showDataTable(listSearch);
     }//GEN-LAST:event_btnSearchActionPerformed
 
